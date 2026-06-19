@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Language selector top-left -->
     <div class="lang-selector">
         <button id="btn-es" class="lang-btn active" onclick="setLang('es')">ES</button>
         <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
@@ -20,9 +19,8 @@
         </div>
     </header>
 
-    <!-- Tab navigation -->
     <nav class="tabs">
-        <button class="tab-btn active" data-tab="wiki" id="tab-wiki-btn">Cocina - Wiki</button>
+        <button class="tab-btn active" data-tab="wiki" id="tab-wiki-btn">Cocina</button>
         <button class="tab-btn" data-tab="powerlevel" id="tab-pl-btn">Power Level / Study</button>
     </nav>
 
@@ -31,27 +29,17 @@
         <div class="selector-panel">
             <div class="selector-group">
                 <label for="category-select" id="lbl-category">Tipo de Comida</label>
-                <select id="category-select">
-                    <option value="" id="opt-select-cat">-- Selecciona --</option>
-                </select>
+                <select id="category-select"><option value="" id="opt-select-cat">-- Selecciona --</option></select>
             </div>
             <div class="selector-group">
                 <label for="recipe-select" id="lbl-recipe">Receta</label>
-                <select id="recipe-select" disabled>
-                    <option value="" id="opt-select-recipe">-- Selecciona tipo primero --</option>
-                </select>
+                <select id="recipe-select" disabled><option value="">-- Selecciona tipo primero --</option></select>
             </div>
             <div class="selector-group">
                 <label for="enchant-select" id="lbl-enchant">Encantamiento</label>
-                <select id="enchant-select" disabled>
-                    <option value="0">.0 (Normal)</option>
-                    <option value="1">.1</option>
-                    <option value="2">.2</option>
-                    <option value="3">.3</option>
-                </select>
+                <select id="enchant-select" disabled><option value="0">.0</option><option value="1">.1</option><option value="2">.2</option><option value="3">.3</option></select>
             </div>
         </div>
-
         <div id="recipe-display" class="recipe-display hidden">
             <div class="recipe-header">
                 <img id="recipe-img" class="recipe-main-img" src="" alt="">
@@ -70,87 +58,58 @@
                 <div id="enchant-variants" class="enchant-grid"></div>
             </div>
         </div>
-
         <div id="placeholder" class="placeholder">
             <div class="placeholder-icon">&#x1F373;</div>
             <p id="placeholder-text">Selecciona un tipo de comida y una receta para ver los ingredientes</p>
         </div>
     </main>
 
-    <!-- TAB 2: POWER LEVEL / STUDY -->
+    <!-- TAB 2: POWER LEVEL -->
     <main id="tab-powerlevel" class="tab-content">
         <div class="pl-panel">
-            <h2 id="pl-title" class="pl-title">Calculadora Power Level / Study</h2>
-            <p id="pl-desc" class="pl-desc">Calcula cuantos items necesitas estudiar para subir tu especializacion de cocina</p>
+            <h2 id="pl-title" class="pl-title">POWER-LEVEL DE COCINA</h2>
+            <p id="pl-desc" class="pl-desc">Calcula cuantos items necesitas estudiar para subir tu especializacion</p>
 
-            <div class="pl-form">
-                <div class="pl-row">
+            <div class="pl-config">
+                <div class="pl-config-row">
                     <div class="pl-field">
-                        <label for="pl-food-select" id="pl-lbl-food">Comida a estudiar</label>
-                        <select id="pl-food-select">
-                            <option value="">-- Selecciona --</option>
-                        </select>
+                        <label>Especialidad</label>
+                        <select id="pl-mastery-select"></select>
                     </div>
                     <div class="pl-field">
-                        <label for="pl-enchant" id="pl-lbl-enchant">Encantamiento</label>
-                        <select id="pl-enchant">
-                            <option value="0">.0</option>
-                            <option value="1">.1</option>
-                            <option value="2">.2</option>
-                            <option value="3">.3</option>
-                        </select>
+                        <label id="pl-lbl-from">Nivel Actual</label>
+                        <input type="number" id="pl-level-from" min="0" max="100" value="1">
+                    </div>
+                    <div class="pl-field">
+                        <label id="pl-lbl-to">Nivel Meta</label>
+                        <input type="number" id="pl-level-to" min="1" max="100" value="100">
                     </div>
                 </div>
-                <div class="pl-row">
-                    <div class="pl-field">
-                        <label for="pl-level-from" id="pl-lbl-from">Nivel actual</label>
-                        <input type="number" id="pl-level-from" min="0" max="119" value="0">
-                    </div>
-                    <div class="pl-field">
-                        <label for="pl-level-to" id="pl-lbl-to">Nivel objetivo</label>
-                        <input type="number" id="pl-level-to" min="1" max="120" value="100">
-                    </div>
-                </div>
-                <div class="pl-row">
-                    <div class="pl-field">
-                        <label for="pl-price" id="pl-lbl-price">Precio por unidad (silver)</label>
-                        <input type="number" id="pl-price" min="0" value="0" placeholder="0">
-                    </div>
-                    <div class="pl-field">
-                        <button id="pl-calc-btn" class="pl-calc-btn" onclick="calculatePowerLevel()">Calcular</button>
-                    </div>
+                <div class="pl-fame-box">
+                    <span id="pl-fame-req-label">Fama Requerida:</span>
+                    <strong id="pl-fame-req-value">4,032,320</strong>
                 </div>
             </div>
 
-            <div id="pl-results" class="pl-results hidden">
-                <div class="pl-result-card">
-                    <div class="pl-result-label" id="pl-res-food-lbl">Comida</div>
-                    <div class="pl-result-value" id="pl-res-food">-</div>
-                </div>
-                <div class="pl-result-card">
-                    <div class="pl-result-label" id="pl-res-fame-item-lbl">Fama por item (study)</div>
-                    <div class="pl-result-value" id="pl-res-fame-item">-</div>
-                </div>
-                <div class="pl-result-card">
-                    <div class="pl-result-label" id="pl-res-fame-total-lbl">Fama total necesaria</div>
-                    <div class="pl-result-value" id="pl-res-fame-total">-</div>
-                </div>
-                <div class="pl-result-card">
-                    <div class="pl-result-label" id="pl-res-qty-lbl">Cantidad de items</div>
-                    <div class="pl-result-value highlight" id="pl-res-qty">-</div>
-                </div>
-                <div class="pl-result-card">
-                    <div class="pl-result-label" id="pl-res-price-lbl">Precio total</div>
-                    <div class="pl-result-value" id="pl-res-price">-</div>
-                </div>
+            <div class="pl-table-wrap">
+                <table class="pl-table">
+                    <thead>
+                        <tr>
+                            <th id="pl-th-receta">Receta</th>
+                            <th id="pl-th-precio">Precio</th>
+                            <th id="pl-th-estudio">Costo de Estudio</th>
+                            <th id="pl-th-platafama">Plata/Fama</th>
+                            <th id="pl-th-restantes">Restantes</th>
+                            <th id="pl-th-costototal">Costo Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pl-table-body"></tbody>
+                </table>
             </div>
         </div>
     </main>
 
-    <footer>
-        <p>HypeLooT &copy; 2026 | Albion Online Wiki Data</p>
-    </footer>
-
+    <footer><p>HypeLooT &copy; 2026 | Albion Online</p></footer>
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

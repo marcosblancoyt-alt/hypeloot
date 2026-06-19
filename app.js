@@ -1,39 +1,40 @@
 // ========== HypeLooT - Albion Online Cooking App ==========
 let currentLang = 'es';
 
-// TRANSLATIONS
 const UI_TEXT = {
     es: {
-        tabWiki: "Cocina - Wiki", tabPL: "Power Level / Study",
+        tabWiki: "Cocina", tabPL: "Power Level / Study",
         lblCategory: "Tipo de Comida", lblRecipe: "Receta", lblEnchant: "Encantamiento",
         optSelectCat: "-- Selecciona --", optSelectRecipe: "-- Selecciona tipo primero --",
         lblIngredients: "Ingredientes Necesarios", lblEnchantVariants: "Variantes de Encantamiento",
         placeholderText: "Selecciona un tipo de comida y una receta para ver los ingredientes",
         enchNormal: "Sin encantamiento", ench1: "Encantamiento 1", ench2: "Encantamiento 2", ench3: "Encantamiento 3",
         noSauce: "Sin salsa",
-        plTitle: "Calculadora Power Level / Study",
-        plDesc: "Calcula cuantos items necesitas estudiar para subir tu especializacion de cocina",
-        plLblFood: "Comida a estudiar", plLblEnchant: "Encantamiento",
-        plLblFrom: "Nivel actual", plLblTo: "Nivel objetivo",
-        plLblPrice: "Precio por unidad (silver)", plCalcBtn: "Calcular",
-        plResFood: "Comida", plResFameItem: "Fama por item (study)",
-        plResFameTotal: "Fama total necesaria", plResQty: "Cantidad de items", plResPrice: "Precio total"
+        plTitle: "Power Level de Cocina",
+        plDesc: "Calcula cuantos items necesitas estudiar para subir tu especializacion",
+        plLblMastery: "Especialidad", plLblLevelFrom: "Nivel Actual",
+        plLblFamaCurrent: "Fama Actual", plLblLevelTo: "Nivel Meta",
+        plStation: "Estacion", plCalcBtn: "Calcular",
+        plColReceta: "Receta", plColPrecio: "Precio", plColCostoEstudio: "Costo de Estudio",
+        plColPlataFama: "Plata/Fama", plColRestantes: "Restantes", plColCostoTotal: "Costo Total",
+        plFamaReq: "Fama Requerida"
     },
     en: {
-        tabWiki: "Cooking - Wiki", tabPL: "Power Level / Study",
+        tabWiki: "Cooking", tabPL: "Power Level / Study",
         lblCategory: "Food Type", lblRecipe: "Recipe", lblEnchant: "Enchantment",
         optSelectCat: "-- Select --", optSelectRecipe: "-- Select type first --",
         lblIngredients: "Required Ingredients", lblEnchantVariants: "Enchantment Variants",
         placeholderText: "Select a food type and recipe to see ingredients",
         enchNormal: "No enchantment", ench1: "Enchantment 1", ench2: "Enchantment 2", ench3: "Enchantment 3",
         noSauce: "No sauce",
-        plTitle: "Power Level / Study Calculator",
-        plDesc: "Calculate how many items you need to study to level up your cooking specialization",
-        plLblFood: "Food to study", plLblEnchant: "Enchantment",
-        plLblFrom: "Current level", plLblTo: "Target level",
-        plLblPrice: "Price per unit (silver)", plCalcBtn: "Calculate",
-        plResFood: "Food", plResFameItem: "Fame per item (study)",
-        plResFameTotal: "Total fame needed", plResQty: "Items needed", plResPrice: "Total price"
+        plTitle: "Cooking Power Level",
+        plDesc: "Calculate how many items you need to study to level your specialization",
+        plLblMastery: "Specialization", plLblLevelFrom: "Current Level",
+        plLblFamaCurrent: "Current Fame", plLblLevelTo: "Target Level",
+        plStation: "Station", plCalcBtn: "Calculate",
+        plColReceta: "Recipe", plColPrecio: "Price", plColCostoEstudio: "Study Cost",
+        plColPlataFama: "Silver/Fame", plColRestantes: "Remaining", plColCostoTotal: "Total Cost",
+        plFamaReq: "Fame Required"
     }
 };
 
@@ -45,6 +46,62 @@ const INGREDIENT_NAMES = {
 const CAT_NAMES = {
     es: { soup:"Sopa", salad:"Ensalada", omelette:"Tortilla", pie:"Pastel", stew:"Guiso", sandwich:"Bocadillo", roast:"Asado" },
     en: { soup:"Soup", salad:"Salad", omelette:"Omelette", pie:"Pie", stew:"Stew", sandwich:"Sandwich", roast:"Roast" }
+};
+
+// MASTERY DATA (fama total 0->100)
+const MASTERY_FAME = {
+    ingrediente: 4032320,
+    asados: 4032320,
+    guisos: 4032320,
+    sopas: 3909508,
+    ensaladas: 4032320,
+    bocadillo: 4032320,
+    pastel: 4032320,
+    tortillas: 4032320
+};
+
+const MASTERY_NAMES = {
+    es: { ingrediente:"Ingrediente", asados:"Asados", guisos:"Guisos", sopas:"Sopas", ensaladas:"Ensaladas", bocadillo:"Bocadillo", pastel:"Pastel", tortillas:"Tortillas" },
+    en: { ingrediente:"Ingredient", asados:"Roast", guisos:"Stew", sopas:"Soup", ensaladas:"Salad", bocadillo:"Sandwich", pastel:"Pie", tortillas:"Omelette" }
+};
+
+// Study fame per item (from real data)
+const STUDY_FAME = {
+    "carrot_soup": 23,
+    "bean_salad": 23,
+    "wheat_soup": 71,
+    "chicken_pie": 20,
+    "chicken_omelette": 20,
+    "roast_chicken": 23,
+    "turnip_salad": 71,
+    "goat_stew": 23,
+    "goat_sandwich": 20,
+    "cabbage_soup": 213,
+    "goose_pie": 71,
+    "goose_omelette": 62,
+    "roast_goose": 71,
+    "potato_salad": 213,
+    "mutton_stew": 71,
+    "mutton_sandwich": 62,
+    "pork_pie": 213,
+    "pork_omelette": 187,
+    "roast_pork": 213,
+    "beef_stew": 213,
+    "beef_sandwich": 213,
+    "avalonian_goat_stew": 23,
+    "avalonian_beef_stew": 213,
+    "avalonian_chicken_omelette": 20
+};
+
+// Which mastery each recipe belongs to
+const RECIPE_MASTERY = {
+    "carrot_soup":"sopas", "wheat_soup":"sopas", "cabbage_soup":"sopas",
+    "bean_salad":"ensaladas", "turnip_salad":"ensaladas", "potato_salad":"ensaladas",
+    "chicken_omelette":"tortillas", "goose_omelette":"tortillas", "pork_omelette":"tortillas", "avalonian_chicken_omelette":"tortillas",
+    "chicken_pie":"pastel", "goose_pie":"pastel", "pork_pie":"pastel",
+    "goat_stew":"guisos", "mutton_stew":"guisos", "beef_stew":"guisos", "avalonian_goat_stew":"guisos", "avalonian_beef_stew":"guisos",
+    "goat_sandwich":"bocadillo", "mutton_sandwich":"bocadillo", "beef_sandwich":"bocadillo",
+    "roast_chicken":"asados", "roast_goose":"asados", "roast_pork":"asados"
 };
 
 function t(key) { return UI_TEXT[currentLang][key] || key; }
@@ -70,20 +127,10 @@ function updateUI() {
     document.getElementById('placeholder-text').textContent = t('placeholderText');
     document.getElementById('pl-title').textContent = t('plTitle');
     document.getElementById('pl-desc').textContent = t('plDesc');
-    document.getElementById('pl-lbl-food').textContent = t('plLblFood');
-    document.getElementById('pl-lbl-enchant').textContent = t('plLblEnchant');
-    document.getElementById('pl-lbl-from').textContent = t('plLblFrom');
-    document.getElementById('pl-lbl-to').textContent = t('plLblTo');
-    document.getElementById('pl-lbl-price').textContent = t('plLblPrice');
     document.getElementById('pl-calc-btn').textContent = t('plCalcBtn');
-    document.getElementById('pl-res-food-lbl').textContent = t('plResFood');
-    document.getElementById('pl-res-fame-item-lbl').textContent = t('plResFameItem');
-    document.getElementById('pl-res-fame-total-lbl').textContent = t('plResFameTotal');
-    document.getElementById('pl-res-qty-lbl').textContent = t('plResQty');
-    document.getElementById('pl-res-price-lbl').textContent = t('plResPrice');
-    // Refresh dropdowns
     populateCategories();
-    populatePLFood();
+    populateMasteries();
+    renderPLTable();
     const recipeId = document.getElementById('recipe-select').value;
     if (recipeId) displayRecipe();
 }
@@ -98,7 +145,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-// WIKI TAB
+// ============ WIKI TAB ============
 const categorySelect = document.getElementById('category-select');
 const recipeSelect = document.getElementById('recipe-select');
 const enchantSelect = document.getElementById('enchant-select');
@@ -108,8 +155,7 @@ function populateCategories() {
     categorySelect.innerHTML = `<option value="">${t('optSelectCat')}</option>`;
     Object.keys(CATEGORIES).forEach(key => {
         const opt = document.createElement('option');
-        opt.value = key;
-        opt.textContent = catName(key);
+        opt.value = key; opt.textContent = catName(key);
         categorySelect.appendChild(opt);
     });
     if (val) categorySelect.value = val;
@@ -118,20 +164,12 @@ function populateCategories() {
 categorySelect.addEventListener('change', () => {
     const category = categorySelect.value;
     recipeSelect.innerHTML = '';
-    if (!category) {
-        recipeSelect.disabled = true;
-        recipeSelect.innerHTML = `<option value="">${t('optSelectRecipe')}</option>`;
-        enchantSelect.disabled = true;
-        hideRecipe(); return;
-    }
-    recipeSelect.disabled = false;
-    enchantSelect.disabled = false;
+    if (!category) { recipeSelect.disabled = true; recipeSelect.innerHTML = `<option value="">${t('optSelectRecipe')}</option>`; enchantSelect.disabled = true; hideRecipe(); return; }
+    recipeSelect.disabled = false; enchantSelect.disabled = false;
     recipeSelect.innerHTML = `<option value="">${t('optSelectRecipe')}</option>`;
     RECIPES.filter(r => r.category === category).sort((a,b) => a.tier - b.tier).forEach(r => {
-        const opt = document.createElement('option');
-        opt.value = r.id;
-        opt.textContent = `T${r.tier} - ${recipeName(r)}`;
-        recipeSelect.appendChild(opt);
+        const opt = document.createElement('option'); opt.value = r.id;
+        opt.textContent = `T${r.tier} - ${recipeName(r)}`; recipeSelect.appendChild(opt);
     });
     hideRecipe();
 });
@@ -139,10 +177,7 @@ categorySelect.addEventListener('change', () => {
 recipeSelect.addEventListener('change', displayRecipe);
 enchantSelect.addEventListener('change', displayRecipe);
 
-function hideRecipe() {
-    document.getElementById('recipe-display').classList.add('hidden');
-    document.getElementById('placeholder').classList.remove('hidden');
-}
+function hideRecipe() { document.getElementById('recipe-display').classList.add('hidden'); document.getElementById('placeholder').classList.remove('hidden'); }
 
 function displayRecipe() {
     const recipeId = recipeSelect.value;
@@ -150,34 +185,24 @@ function displayRecipe() {
     const recipe = RECIPES.find(r => r.id === recipeId);
     if (!recipe) return;
     const enchant = parseInt(enchantSelect.value);
-
     document.getElementById('recipe-display').classList.remove('hidden');
     document.getElementById('placeholder').classList.add('hidden');
-
     const img = document.getElementById('recipe-img');
     img.src = getItemImageUrl(recipe.itemId, enchant).replace('size=64','size=128');
     img.onerror = function() { this.src = getItemImageUrl(recipe.itemId, 0).replace('size=64','size=128'); };
-
     document.getElementById('recipe-name').textContent = recipeName(recipe);
     document.getElementById('recipe-tier').textContent = `Tier ${recipe.tier}.${enchant} | ${catName(recipe.category)}`;
     document.getElementById('recipe-effect').textContent = recipe.effect;
-
-    const list = document.getElementById('ingredients-list');
-    list.innerHTML = '';
+    const list = document.getElementById('ingredients-list'); list.innerHTML = '';
     (recipe.ingredients[enchant] || recipe.ingredients[0]).forEach(ing => {
-        const card = document.createElement('div');
-        card.className = 'ingredient-card';
+        const card = document.createElement('div'); card.className = 'ingredient-card';
         card.innerHTML = `<img src="${getItemImageUrl(ing.id, 0)}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect fill=%22%232a2a4a%22 width=%2264%22 height=%2264%22 rx=%228%22/%3E%3Ctext x=%2232%22 y=%2238%22 text-anchor=%22middle%22 fill=%22%23ccff00%22 font-size=%2220%22%3E?%3C/text%3E%3C/svg%3E'"><div class="ingredient-info"><div class="ingredient-name">${ingName(ing.name)}</div><div class="ingredient-qty">x${ing.qty}</div></div>`;
         list.appendChild(card);
     });
-
-    const variants = document.getElementById('enchant-variants');
-    variants.innerHTML = '';
+    const variants = document.getElementById('enchant-variants'); variants.innerHTML = '';
     [{l:0,k:'enchNormal'},{l:1,k:'ench1'},{l:2,k:'ench2'},{l:3,k:'ench3'}].forEach(enc => {
-        const card = document.createElement('div');
-        card.className = `enchant-card ${enc.l===enchant?'active':''}`;
-        const ings = recipe.ingredients[enc.l];
-        const sauce = ings ? ings.find(i => i.name.includes('Fish Sauce')) : null;
+        const card = document.createElement('div'); card.className = `enchant-card ${enc.l===enchant?'active':''}`;
+        const ings = recipe.ingredients[enc.l]; const sauce = ings ? ings.find(i => i.name.includes('Fish Sauce')) : null;
         const sauceText = sauce ? `+ <span>${ingName(sauce.name)}</span> x${sauce.qty}` : `<span>${t('noSauce')}</span>`;
         card.innerHTML = `<div class="enchant-card-header"><img src="${getItemImageUrl(recipe.itemId, enc.l)}" class="enchant-mini-img" onerror="this.style.display='none'"><div class="enchant-card-title">${t(enc.k)}</div></div><div class="enchant-card-sauce">${sauceText}</div>`;
         card.onclick = () => { enchantSelect.value = enc.l; displayRecipe(); };
@@ -185,76 +210,78 @@ function displayRecipe() {
     });
 }
 
-// POWER LEVEL TAB
-function populatePLFood() {
-    const sel = document.getElementById('pl-food-select');
+// ============ POWER LEVEL TAB ============
+function populateMasteries() {
+    const sel = document.getElementById('pl-mastery-select');
+    if (!sel) return;
     const val = sel.value;
-    sel.innerHTML = `<option value="">${t('optSelectCat')}</option>`;
-    RECIPES.sort((a,b) => a.tier - b.tier).forEach(r => {
-        const opt = document.createElement('option');
-        opt.value = r.id;
-        opt.textContent = `T${r.tier} ${recipeName(r)} [${catName(r.category)}]`;
-        sel.appendChild(opt);
+    sel.innerHTML = '';
+    Object.keys(MASTERY_FAME).forEach(key => {
+        const opt = document.createElement('option'); opt.value = key;
+        opt.textContent = MASTERY_NAMES[currentLang][key]; sel.appendChild(opt);
     });
     if (val) sel.value = val;
 }
 
-// Fame per craft by tier (base crafting fame for food)
-const FAME_PER_CRAFT = { 1: 90, 2: 270, 3: 540, 4: 1080, 5: 2160, 6: 4320, 7: 8640, 8: 17280 };
-// Enchantment multiplier
-const ENCHANT_FAME_MULT = { 0: 1, 1: 2, 2: 4, 3: 8 };
-// Study gives 275% of crafting fame
-const STUDY_MULTIPLIER = 2.75;
-
-// Fame required per specialization level (cumulative formula)
-// Each level requires: base_fame * level^1.2 (approximation from wiki data)
-// Level 1 = ~14424, and it grows. Using known formula approximation.
-function fameForLevel(level) {
-    if (level <= 0) return 0;
-    // Approx: fame_per_level = 14424 * (level / 1)^1.0 -> linear growth simplified
-    // More accurate: total fame 0->100 is approx 23,000,000 for standard nodes
-    // Per level: starts at ~14424 and increases ~3% each level
-    const baseFame = 14424;
-    let total = 0;
-    for (let i = 1; i <= level; i++) {
-        total += Math.floor(baseFame * Math.pow(i / 1, 1.0) * (1 + (i-1) * 0.02));
-    }
-    return total;
+function getFameRequired(mastery, levelFrom, levelTo) {
+    const totalFame = MASTERY_FAME[mastery] || 4032320;
+    // Linear interpolation: each level = totalFame / 100
+    const famePerLevel = totalFame / 100;
+    return Math.floor(famePerLevel * (levelTo - levelFrom));
 }
 
-function totalFameBetweenLevels(from, to) {
-    return fameForLevel(to) - fameForLevel(from);
+function renderPLTable() {
+    const mastery = document.getElementById('pl-mastery-select') ? document.getElementById('pl-mastery-select').value : 'sopas';
+    const levelFrom = parseInt(document.getElementById('pl-level-from') ? document.getElementById('pl-level-from').value : 0) || 0;
+    const levelTo = parseInt(document.getElementById('pl-level-to') ? document.getElementById('pl-level-to').value : 100) || 100;
+    const fameReq = getFameRequired(mastery, levelFrom, levelTo);
+
+    // Update fame required display
+    const fameEl = document.getElementById('pl-fame-req-value');
+    if (fameEl) fameEl.textContent = fameReq.toLocaleString();
+
+    // Build table
+    const tbody = document.getElementById('pl-table-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    // Get recipes that belong to this mastery
+    const relevantRecipes = RECIPES.filter(r => RECIPE_MASTERY[r.id] === mastery);
+
+    relevantRecipes.sort((a,b) => a.tier - b.tier).forEach(r => {
+        const studyFame = STUDY_FAME[r.id] || 23;
+        const priceInput = document.getElementById('price-' + r.id);
+        const price = priceInput ? parseInt(priceInput.value) || 0 : 0;
+        const silverPerFame = price > 0 ? (price / studyFame).toFixed(2) : '-';
+        const remaining = Math.ceil(fameReq / studyFame);
+        const totalCost = price > 0 ? (remaining * price) : 0;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td class="td-recipe"><img src="${getItemImageUrl(r.itemId, 0)}" class="table-img" onerror="this.style.display='none'"> ${recipeName(r)}</td>
+            <td><input type="number" class="price-input" id="price-${r.id}" value="${price}" min="0" onchange="renderPLTable()"></td>
+            <td>${studyFame}</td>
+            <td>${silverPerFame}</td>
+            <td>${remaining.toLocaleString()}</td>
+            <td>${totalCost > 0 ? totalCost.toLocaleString() : '-'}</td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
 
-function calculatePowerLevel() {
-    const foodId = document.getElementById('pl-food-select').value;
-    const enchant = parseInt(document.getElementById('pl-enchant').value);
-    const levelFrom = parseInt(document.getElementById('pl-level-from').value) || 0;
-    const levelTo = parseInt(document.getElementById('pl-level-to').value) || 100;
-    const price = parseInt(document.getElementById('pl-price').value) || 0;
-
-    if (!foodId) { alert(currentLang==='es' ? 'Selecciona una comida' : 'Select a food'); return; }
-    if (levelFrom >= levelTo) { alert(currentLang==='es' ? 'El nivel objetivo debe ser mayor' : 'Target level must be higher'); return; }
-
-    const recipe = RECIPES.find(r => r.id === foodId);
-    if (!recipe) return;
-
-    const baseFame = FAME_PER_CRAFT[recipe.tier] || 540;
-    const famePerItem = Math.floor(baseFame * ENCHANT_FAME_MULT[enchant] * STUDY_MULTIPLIER);
-    const totalFame = totalFameBetweenLevels(levelFrom, levelTo);
-    const itemsNeeded = Math.ceil(totalFame / famePerItem);
-    const totalPrice = itemsNeeded * price;
-
-    document.getElementById('pl-results').classList.remove('hidden');
-    document.getElementById('pl-res-food').textContent = recipeName(recipe);
-    document.getElementById('pl-res-fame-item').textContent = famePerItem.toLocaleString();
-    document.getElementById('pl-res-fame-total').textContent = totalFame.toLocaleString();
-    document.getElementById('pl-res-qty').textContent = itemsNeeded.toLocaleString();
-    document.getElementById('pl-res-price').textContent = price > 0 ? totalPrice.toLocaleString() + ' silver' : '-';
-}
+function calculatePL() { renderPLTable(); }
 
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
     populateCategories();
-    populatePLFood();
+    populateMasteries();
+    renderPLTable();
+
+    // Attach events to PL inputs
+    const masteryEl = document.getElementById('pl-mastery-select');
+    const fromEl = document.getElementById('pl-level-from');
+    const toEl = document.getElementById('pl-level-to');
+    if (masteryEl) masteryEl.addEventListener('change', renderPLTable);
+    if (fromEl) fromEl.addEventListener('change', renderPLTable);
+    if (toEl) toEl.addEventListener('change', renderPLTable);
 });
