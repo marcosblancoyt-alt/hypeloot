@@ -1,0 +1,154 @@
+/* ========== RESET & BASE ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========== HEADER & LOGO ========== */
+header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-bottom: 4px solid #ccff00;
+}
+
+.logo {
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    font-family: 'Permanent Marker', 'Impact', 'Arial Black', sans-serif;
+    transform: skewX(-5deg) rotate(-2deg);
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.logo-hype {
+    color: #ffffff;
+    -webkit-text-stroke: 3px #000000;
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000, 5px 5px 0px rgba(0,0,0,0.3);
+    letter-spacing: -3px;
+}
+
+.logo-loot {
+    color: #ccff00;
+    -webkit-text-stroke: 3px #000000;
+    paint-order: stroke fill;
+    text-shadow: 4px 4px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 1px 1px 0px #000, 5px 5px 0px rgba(0,0,0,0.3), 0 0 20px rgba(204,255,0,0.6), 0 0 40px rgba(204,255,0,0.3);
+    letter-spacing: -3px;
+}
+
+.subtitle { color: #aaa; font-size: 1rem; margin-top: 8px; letter-spacing: 3px; text-transform: uppercase; }
+
+/* ========== MAIN ========== */
+main { flex: 1; max-width: 1000px; margin: 0 auto; padding: 30px 20px; width: 100%; }
+
+/* ========== SELECTOR PANEL ========== */
+.selector-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; margin-bottom: 30px; padding: 25px;
+    background: #f8f9fa; border-radius: 12px; border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.selector-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #495057; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.selector-group select {
+    width: 100%; padding: 12px 15px; border: 2px solid #dee2e6; border-radius: 8px;
+    font-size: 1rem; background: #fff; cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+}
+
+.selector-group select:focus { outline: none; border-color: #ccff00; box-shadow: 0 0 0 3px rgba(204,255,0,0.2); }
+.selector-group select:disabled { background-color: #e9ecef; cursor: not-allowed; opacity: 0.7; }
+
+/* ========== RECIPE DISPLAY ========== */
+.recipe-display { animation: fadeIn 0.4s ease; }
+.recipe-display.hidden { display: none; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.recipe-header {
+    display: flex; align-items: center; gap: 25px; padding: 25px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 12px; margin-bottom: 25px; color: white;
+}
+
+.recipe-main-img {
+    width: 100px; height: 100px; border-radius: 12px; border: 3px solid #ccff00;
+    background: #2a2a4a; object-fit: contain; padding: 8px;
+    box-shadow: 0 4px 15px rgba(204,255,0,0.3);
+}
+
+.recipe-info h2 { font-size: 1.6rem; margin-bottom: 5px; line-height: 1.3; }
+.name-es { display: block; font-size: 1.5rem; }
+.name-en { display: block; font-size: 1rem; opacity: 0.7; font-weight: 400; font-style: italic; }
+
+.recipe-tier {
+    display: inline-block; padding: 4px 12px; background: #ccff00; color: #1a1a2e;
+    border-radius: 20px; font-weight: 700; font-size: 0.85rem; margin-bottom: 8px;
+}
+
+.recipe-effect { color: #adb5bd; font-size: 0.9rem; font-style: italic; }
+
+/* ========== INGREDIENTS ========== */
+.ingredients-section { margin-bottom: 25px; }
+.ingredients-section h3 { font-size: 1.2rem; margin-bottom: 15px; color: #1a1a2e; padding-bottom: 8px; border-bottom: 2px solid #ccff00; }
+
+.ingredients-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+
+.ingredient-card {
+    display: flex; align-items: center; gap: 12px; padding: 15px;
+    background: #f8f9fa; border-radius: 10px; border: 1px solid #e9ecef;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.ingredient-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.ingredient-card img { width: 45px; height: 45px; border-radius: 8px; background: #2a2a4a; padding: 3px; object-fit: contain; }
+
+.ingredient-info { flex: 1; }
+.ingredient-name { font-weight: 600; font-size: 0.85rem; color: #333; }
+.ingredient-name-en { font-size: 0.75rem; color: #6c757d; font-style: italic; }
+.ingredient-qty { font-size: 1.1rem; font-weight: 700; color: #99cc00; margin-top: 2px; }
+
+/* ========== ENCHANT INFO ========== */
+.enchant-info h3 { font-size: 1.2rem; margin-bottom: 15px; color: #1a1a2e; padding-bottom: 8px; border-bottom: 2px solid #ccff00; }
+.enchant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+.enchant-card { padding: 15px; background: #f8f9fa; border-radius: 10px; border: 2px solid #e9ecef; cursor: pointer; transition: all 0.2s; }
+.enchant-card:hover { border-color: #ccff00; background: #f9fff0; }
+.enchant-card.active { border-color: #ccff00; background: #f9fff0; box-shadow: 0 0 0 3px rgba(204,255,0,0.2); }
+
+.enchant-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.enchant-mini-img { width: 36px; height: 36px; border-radius: 6px; background: #2a2a4a; padding: 2px; object-fit: contain; }
+.enchant-card-title { font-weight: 700; font-size: 0.95rem; color: #1a1a2e; }
+.enchant-card-title-en { font-size: 0.75rem; color: #6c757d; font-style: italic; }
+.enchant-card-sauce { font-size: 0.8rem; color: #6c757d; }
+.enchant-card-sauce span { color: #99cc00; font-weight: 600; }
+.enchant-card-sauce-en { font-size: 0.7rem; color: #adb5bd; font-style: italic; }
+
+/* ========== PLACEHOLDER ========== */
+.placeholder { text-align: center; padding: 60px 20px; color: #adb5bd; }
+.placeholder.hidden { display: none; }
+.placeholder-icon { font-size: 4rem; margin-bottom: 15px; }
+.placeholder p { font-size: 1.1rem; }
+
+/* ========== FOOTER ========== */
+footer { text-align: center; padding: 20px; background: #1a1a2e; color: #6c757d; font-size: 0.85rem; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+    .logo { font-size: 2.5rem; }
+    .recipe-header { flex-direction: column; text-align: center; }
+    .selector-panel { grid-template-columns: 1fr; }
+    .ingredients-grid { grid-template-columns: 1fr; }
+}

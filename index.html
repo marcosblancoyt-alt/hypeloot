@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HypeLooT - Albion Online Cooking Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="logo-hype">Hype</span><span class="logo-loot">LooT</span>
+        </div>
+        <p class="subtitle">Albion Online Cooking Calculator</p>
+    </header>
+
+    <main>
+        <div class="selector-panel">
+            <div class="selector-group">
+                <label for="category-select">Tipo de Comida / Food Type</label>
+                <select id="category-select">
+                    <option value="">-- Selecciona / Select --</option>
+                </select>
+            </div>
+            <div class="selector-group">
+                <label for="recipe-select">Receta / Recipe</label>
+                <select id="recipe-select" disabled>
+                    <option value="">-- Selecciona tipo primero --</option>
+                </select>
+            </div>
+            <div class="selector-group">
+                <label for="enchant-select">Encantamiento / Enchantment</label>
+                <select id="enchant-select" disabled>
+                    <option value="0">.0 (Normal)</option>
+                    <option value="1">.1 (Encantamiento 1)</option>
+                    <option value="2">.2 (Encantamiento 2)</option>
+                    <option value="3">.3 (Encantamiento 3)</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="recipe-display" class="recipe-display hidden">
+            <div class="recipe-header">
+                <img id="recipe-img" class="recipe-main-img" src="" alt="">
+                <div class="recipe-info">
+                    <h2 id="recipe-name"></h2>
+                    <div class="recipe-tier" id="recipe-tier"></div>
+                    <div class="recipe-effect" id="recipe-effect"></div>
+                </div>
+            </div>
+
+            <div class="ingredients-section">
+                <h3>Ingredientes Necesarios / Required Ingredients</h3>
+                <div id="ingredients-list" class="ingredients-grid"></div>
+            </div>
+
+            <div class="enchant-info" id="enchant-info">
+                <h3>Variantes de Encantamiento / Enchantment Variants</h3>
+                <div id="enchant-variants" class="enchant-grid"></div>
+            </div>
+        </div>
+
+        <div id="placeholder" class="placeholder">
+            <div class="placeholder-icon">&#x1F373;</div>
+            <p>Selecciona un tipo de comida y una receta para ver los ingredientes<br>Select a food type and recipe to see ingredients</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>HypeLooT &copy; 2026 | Datos basados en Albion Online Wiki</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
