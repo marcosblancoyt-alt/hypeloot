@@ -215,9 +215,11 @@ function populateMasteries() {
     if (!sel) return;
     const val = sel.value;
     sel.innerHTML = '';
-    Object.keys(MASTERY_FAME).forEach(key => {
+    Object.keys(MASTERY_FAME).forEach((key, i) => {
         const opt = document.createElement('option'); opt.value = key;
-        opt.textContent = MASTERY_NAMES[currentLang][key]; sel.appendChild(opt);
+        opt.textContent = MASTERY_NAMES[currentLang][key];
+        if (i === 0 && !val) opt.selected = true;
+        sel.appendChild(opt);
     });
     if (val) sel.value = val;
 }
@@ -226,7 +228,7 @@ function populateMasteries() {
 const CAT_TO_MASTERY = { soup:"sopas", salad:"ensaladas", omelette:"tortillas", pie:"pastel", stew:"guisos", sandwich:"bocadillo", roast:"asados" };
 
 function getRecipesForMastery(mastery) {
-    // Find which category matches this mastery
+    if (mastery === 'ingrediente') return RECIPES; // All recipes
     const catKey = Object.keys(CAT_TO_MASTERY).find(k => CAT_TO_MASTERY[k] === mastery);
     if (!catKey) return RECIPES;
     return RECIPES.filter(r => r.category === catKey);
