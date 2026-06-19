@@ -3,320 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HypeLooT | HypeKLK - Street Art Gaming</title>
-    <meta name="description" content="HypeLooT - La comunidad gaming de HypeKLK. Streamer gallego de Albion Online.">
+    <title>HypeLooT</title>
+    <meta name="description" content="HypeLooT - Street Art & Gaming Luxury">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Permanent+Marker&family=Bebas+Neue&family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <span class="logo-text">Hype<span class="logo-accent">LooT</span></span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="#home" class="nav-link">Inicio</a>
-                <a href="#about" class="nav-link">Sobre Mí</a>
-                <a href="#streams" class="nav-link">Streams</a>
-                <a href="#clips" class="nav-link">Clips</a>
-                <a href="#social" class="nav-link">Redes</a>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span class="hamburger"></span>
+    <!-- Navigation - Alec Monopoly style: minimal, top bar -->
+    <nav class="nav" id="nav">
+        <div class="nav-bar">
+            <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
+            <div class="nav-center-logo">
+                <a href="#" class="nav-logo-link">HypeLooT</a>
+            </div>
+            <div class="nav-right">
+                <a href="https://twitch.tv/hypeklk" target="_blank" class="nav-social-link">LIVE</a>
+            </div>
         </div>
     </nav>
 
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-overlay"></div>
-        <div class="paint-splatter splatter-1"></div>
-        <div class="paint-splatter splatter-2"></div>
-        <div class="paint-splatter splatter-3"></div>
-        <div class="hero-content">
-            <div class="hero-logo-wrapper">
-                <h1 class="hero-logo">
-                    <span class="drip-letter">H</span><span class="drip-letter">y</span><span class="drip-letter">p</span><span class="drip-letter">e</span><span class="logo-accent drip-letter">L</span><span class="logo-accent drip-letter">o</span><span class="logo-accent drip-letter">o</span><span class="logo-accent drip-letter">T</span>
-                </h1>
-                <div class="hero-drips">
-                    <div class="drip drip-1"></div>
-                    <div class="drip drip-2"></div>
-                    <div class="drip drip-3"></div>
-                    <div class="drip drip-4"></div>
-                    <div class="drip drip-5"></div>
-                </div>
-            </div>
-            <p class="hero-tagline">GAMING &bull; STREET ART &bull; COMUNIDAD</p>
-            <p class="hero-subtitle">Gallego &bull; 26 años &bull; Streamer</p>
-            <div class="hero-cta">
-                <a href="https://twitch.tv/hypeklk" target="_blank" class="btn btn-primary">
-                    <span class="btn-icon">&#9654;</span> VER EN TWITCH
-                </a>
-                <a href="#social" class="btn btn-secondary">REDES SOCIALES</a>
-            </div>
+    <!-- Full Screen Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-content">
+            <a href="#gallery" class="menu-link" data-index="01">GALLERY</a>
+            <a href="#about" class="menu-link" data-index="02">ABOUT</a>
+            <a href="#streams" class="menu-link" data-index="03">STREAMS</a>
+            <a href="https://twitch.tv/hypeklk" target="_blank" class="menu-link" data-index="04">TWITCH</a>
+            <a href="https://instagram.com/hypeklk" target="_blank" class="menu-link" data-index="05">INSTAGRAM</a>
+            <a href="https://tiktok.com/@hypeklk" target="_blank" class="menu-link" data-index="06">TIKTOK</a>
+            <a href="#contact" class="menu-link" data-index="07">CONTACT</a>
         </div>
-        <div class="scroll-indicator">
-            <span class="scroll-text">SCROLL</span>
-            <div class="scroll-line"></div>
+    </div>
+
+    <!-- Hero - Full screen like alecmonopoly.com -->
+    <section class="hero" id="home">
+        <div class="hero-artwork">
+            <!-- SVG Logo estilo firma/tag de Alec Monopoly -->
+            <svg class="hero-logo-svg" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Drips background -->
+                <defs>
+                    <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#FF2D9B"/>
+                        <stop offset="50%" style="stop-color:#FFE600"/>
+                        <stop offset="100%" style="stop-color:#39FF14"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Paint drips -->
+                <rect x="120" y="200" width="5" height="45" rx="2" fill="#FF2D9B" opacity="0.8"/>
+                <rect x="280" y="210" width="4" height="60" rx="2" fill="#39FF14" opacity="0.7"/>
+                <rect x="450" y="205" width="5" height="50" rx="2" fill="#FFE600" opacity="0.8"/>
+                <rect x="620" y="215" width="4" height="40" rx="2" fill="#FF2D9B" opacity="0.6"/>
+                <rect x="700" y="200" width="5" height="55" rx="2" fill="#39FF14" opacity="0.7"/>
+                <!-- Main text - graffiti handwritten style -->
+                <text x="400" y="170" text-anchor="middle" font-family="'Permanent Marker', cursive" font-size="120" fill="none" stroke="url(#neonGrad)" stroke-width="3" filter="url(#glow)">HypeLooT</text>
+                <text x="400" y="170" text-anchor="middle" font-family="'Permanent Marker', cursive" font-size="120" fill="white">HypeLooT</text>
+                <!-- Signature underline slash -->
+                <path d="M 150 200 Q 400 220 680 195" stroke="#FF2D9B" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- Dollar signs scattered -->
+                <text x="100" y="80" font-family="'Permanent Marker'" font-size="30" fill="#39FF14" opacity="0.6" transform="rotate(-15, 100, 80)">$</text>
+                <text x="700" y="90" font-family="'Permanent Marker'" font-size="25" fill="#FFE600" opacity="0.5" transform="rotate(10, 700, 90)">$</text>
+                <text x="650" y="250" font-family="'Permanent Marker'" font-size="20" fill="#FF2D9B" opacity="0.4" transform="rotate(-8, 650, 250)">$</text>
+            </svg>
+        </div>
+        <div class="hero-subtitle">
+            <span>STREET ART</span>
+            <span class="dot">•</span>
+            <span>GAMING</span>
+            <span class="dot">•</span>
+            <span>LUXURY</span>
         </div>
     </section>
 
+    <!-- Gallery - Full width art pieces like alecmonopoly.com -->
+    <section class="gallery" id="gallery">
+        <!-- Artwork 1: Monopoly Man with Money Bags -->
+        <div class="artwork-slide">
+            <div class="artwork-canvas" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);">
+                <svg viewBox="0 0 600 800" class="artwork-svg">
+                    <!-- Monopoly Man character holding money bag -->
+                    <rect width="600" height="800" fill="#0a0a0a"/>
+                    <!-- Background dollar bills floating -->
+                    <text x="50" y="100" font-size="60" fill="#1a5c1a" opacity="0.3" transform="rotate(-20,50,100)">$</text>
+                    <text x="500" y="150" font-size="80" fill="#1a5c1a" opacity="0.2" transform="rotate(15,500,150)">$</text>
+                    <text x="100" y="700" font-size="50" fill="#1a5c1a" opacity="0.25" transform="rotate(-10,100,700)">$</text>
+                    <text x="450" y="650" font-size="70" fill="#1a5c1a" opacity="0.2" transform="rotate(25,450,650)">$</text>
+                    <!-- Top hat -->
+                    <rect x="220" y="120" width="160" height="100" rx="5" fill="#111"/>
+                    <rect x="200" y="210" width="200" height="20" rx="3" fill="#111"/>
+                    <rect x="230" y="130" width="140" height="90" rx="3" fill="#1a1a1a"/>
+                    <!-- Hat band -->
+                    <rect x="220" y="190" width="160" height="15" fill="#FFD700"/>
+                    <!-- Face -->
+                    <ellipse cx="300" cy="300" rx="80" ry="90" fill="#FFE4B5"/>
+                    <!-- Monocle -->
+                    <circle cx="330" cy="280" r="25" fill="none" stroke="#FFD700" stroke-width="3"/>
+                    <line x1="355" y1="280" x2="380" y2="310" stroke="#FFD700" stroke-width="2"/>
+                    <!-- Mustache -->
+                    <path d="M 270 320 Q 300 340 330 320" stroke="#333" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <!-- Smile -->
+                    <path d="M 270 340 Q 300 360 330 340" stroke="#333" stroke-width="3" fill="none"/>
+                    <!-- Body - tuxedo -->
+                    <path d="M 220 380 L 200 650 L 400 650 L 380 380 Z" fill="#111"/>
+                    <!-- White shirt -->
+                    <path d="M 270 380 L 265 550 L 335 550 L 330 380 Z" fill="white"/>
+                    <!-- Bow tie -->
+                    <polygon points="285,390 300,400 315,390 315,410 300,400 285,410" fill="#FF2D9B"/>
+                    <!-- Arms holding money bag -->
+                    <path d="M 220 420 Q 150 450 160 520" stroke="#111" stroke-width="30" fill="none" stroke-linecap="round"/>
+                    <path d="M 380 420 Q 450 450 440 520" stroke="#111" stroke-width="30" fill="none" stroke-linecap="round"/>
+                    <!-- Hands -->
+                    <circle cx="160" cy="530" r="18" fill="#FFE4B5"/>
+                    <circle cx="440" cy="530" r="18" fill="#FFE4B5"/>
+                    <!-- Money bag -->
+                    <ellipse cx="300" cy="580" rx="90" ry="70" fill="#2d5a27"/>
+                    <path d="M 250 520 Q 300 490 350 520" stroke="#2d5a27" stroke-width="15" fill="#2d5a27"/>
+                    <text x="300" y="600" text-anchor="middle" font-size="60" fill="#FFD700" font-weight="bold">$</text>
+                    <!-- Flying bills -->
+                    <rect x="100" y="450" width="50" height="25" rx="3" fill="#85bb65" transform="rotate(-20,125,462)" opacity="0.8"/>
+                    <rect x="430" y="400" width="45" height="22" rx="3" fill="#85bb65" transform="rotate(15,452,411)" opacity="0.7"/>
+                    <rect x="150" y="600" width="40" height="20" rx="2" fill="#85bb65" transform="rotate(10,170,610)" opacity="0.6"/>
+                    <!-- HypeLooT tag -->
+                    <text x="300" y="760" text-anchor="middle" font-family="'Permanent Marker'" font-size="28" fill="#FF2D9B">HypeLooT</text>
+                </svg>
+            </div>
+            <div class="artwork-info">
+                <h3 class="artwork-title">MONEY BAGS</h3>
+                <p class="artwork-desc">Mixed Media / Street Art</p>
+            </div>
+        </div>
+
+        <!-- Artwork 2: Luxury Car scene -->
+        <div class="artwork-slide">
+            <div class="artwork-canvas" style="background: linear-gradient(135deg, #0f0f23 0%, #1a0a2e 100%);">
+                <svg viewBox="0 0 600 800" class="artwork-svg">
+                    <rect width="600" height="800" fill="#0a0a0a"/>
+                    <!-- Night city background -->
+                    <rect x="0" y="400" width="600" height="400" fill="#0d0d0d"/>
+                    <!-- Buildings silhouette -->
+                    <rect x="50" y="200" width="60" height="400" fill="#151515"/>
+                    <rect x="130" y="250" width="50" height="350" fill="#121212"/>
+                    <rect x="200" y="180" width="70" height="420" fill="#181818"/>
+                    <rect x="350" y="220" width="55" height="380" fill="#141414"/>
+                    <rect x="420" y="170" width="80" height="430" fill="#161616"/>
+                    <rect x="520" y="240" width="60" height="360" fill="#131313"/>
+                    <!-- Building windows (yellow dots) -->
+                    <rect x="65" y="220" width="8" height="8" fill="#FFE600" opacity="0.6"/>
+                    <rect x="85" y="250" width="8" height="8" fill="#FFE600" opacity="0.4"/>
+                    <rect x="215" y="200" width="8" height="8" fill="#FFE600" opacity="0.5"/>
+                    <rect x="240" y="230" width="8" height="8" fill="#FFE600" opacity="0.7"/>
+                    <rect x="435" y="190" width="8" height="8" fill="#FFE600" opacity="0.5"/>
+                    <rect x="460" y="220" width="8" height="8" fill="#FFE600" opacity="0.6"/>
+                    <!-- Road -->
+                    <rect x="0" y="580" width="600" height="220" fill="#1a1a1a"/>
+                    <rect x="0" y="680" width="600" height="5" fill="#FFE600" opacity="0.3"/>
+                    <!-- Luxury car - Lamborghini silhouette -->
+                    <path d="M 120 620 L 140 560 L 200 540 L 350 535 L 420 540 L 470 560 L 490 620 Z" fill="#FF2D9B"/>
+                    <path d="M 130 620 L 145 570 L 200 550 L 350 545 L 415 550 L 460 570 L 480 620 Z" fill="#cc1177"/>
+                    <!-- Windows -->
+                    <path d="M 200 555 L 210 545 L 290 543 L 280 555 Z" fill="#111" opacity="0.8"/>
+                    <path d="M 310 555 L 300 543 L 380 545 L 370 555 Z" fill="#111" opacity="0.8"/>
+                    <!-- Wheels -->
+                    <circle cx="200" cy="625" r="30" fill="#111"/>
+                    <circle cx="200" cy="625" r="20" fill="#333"/>
+                    <circle cx="200" cy="625" r="8" fill="#666"/>
+                    <circle cx="420" cy="625" r="30" fill="#111"/>
+                    <circle cx="420" cy="625" r="20" fill="#333"/>
+                    <circle cx="420" cy="625" r="8" fill="#666"/>
+                    <!-- Headlights glow -->
+                    <ellipse cx="145" cy="590" rx="15" ry="8" fill="#FFE600" opacity="0.8"/>
+                    <ellipse cx="145" cy="590" rx="30" ry="15" fill="#FFE600" opacity="0.2"/>
+                    <!-- Character on top with money -->
+                    <circle cx="300" cy="480" r="25" fill="#FFE4B5"/>
+                    <rect x="275" y="450" width="50" height="30" rx="2" fill="#111"/>
+                    <rect x="270" y="475" width="60" height="8" fill="#111"/>
+                    <rect x="280" y="455" width="40" height="25" fill="#1a1a1a"/>
+                    <rect x="275" y="468" width="50" height="8" fill="#FFD700"/>
+                    <!-- Flying money -->
+                    <rect x="250" y="420" width="35" height="18" rx="2" fill="#85bb65" transform="rotate(-15,267,429)" opacity="0.8"/>
+                    <rect x="340" y="430" width="30" height="15" rx="2" fill="#85bb65" transform="rotate(20,355,437)" opacity="0.7"/>
+                    <rect x="200" y="440" width="30" height="15" rx="2" fill="#85bb65" transform="rotate(-25,215,447)" opacity="0.6"/>
+                    <!-- Tag -->
+                    <text x="300" y="760" text-anchor="middle" font-family="'Permanent Marker'" font-size="28" fill="#39FF14">HypeLooT</text>
+                </svg>
+            </div>
+            <div class="artwork-info">
+                <h3 class="artwork-title">LUXURY RIDE</h3>
+                <p class="artwork-desc">Neon Nights / Street Art</p>
+            </div>
+        </div>
+
+        <!-- Artwork 3: Diamond Hands / Rich character -->
+        <div class="artwork-slide">
+            <div class="artwork-canvas" style="background: linear-gradient(135deg, #0a1a0a 0%, #0f0f0f 100%);">
+                <svg viewBox="0 0 600 800" class="artwork-svg">
+                    <rect width="600" height="800" fill="#050505"/>
+                    <!-- Raining money background -->
+                    <rect x="80" y="50" width="40" height="20" rx="2" fill="#85bb65" opacity="0.15" transform="rotate(-10,100,60)"/>
+                    <rect x="200" y="80" width="35" height="18" rx="2" fill="#85bb65" opacity="0.1" transform="rotate(5,217,89)"/>
+                    <rect x="400" y="30" width="38" height="19" rx="2" fill="#85bb65" opacity="0.12" transform="rotate(-15,419,39)"/>
+                    <rect x="500" y="100" width="35" height="18" rx="2" fill="#85bb65" opacity="0.1" transform="rotate(12,517,109)"/>
+                    <rect x="150" y="150" width="30" height="15" rx="2" fill="#85bb65" opacity="0.08" transform="rotate(-8,165,157)"/>
+                    <!-- Giant diamond -->
+                    <polygon points="300,200 220,320 250,450 350,450 380,320" fill="none" stroke="#00FFFF" stroke-width="2"/>
+                    <polygon points="300,200 250,300 350,300" fill="#00FFFF" opacity="0.1"/>
+                    <polygon points="250,300 220,320 250,450 300,400" fill="#00FFFF" opacity="0.05"/>
+                    <polygon points="350,300 380,320 350,450 300,400" fill="#00FFFF" opacity="0.08"/>
+                    <line x1="300" y1="200" x2="300" y2="400" stroke="#00FFFF" stroke-width="1" opacity="0.3"/>
+                    <line x1="250" y1="300" x2="350" y2="300" stroke="#00FFFF" stroke-width="1" opacity="0.3"/>
+                    <!-- Character - Richie Rich style -->
+                    <circle cx="300" cy="530" r="45" fill="#FFE4B5"/>
+                    <!-- Hair -->
+                    <path d="M 260 500 Q 280 470 300 475 Q 320 470 340 500" fill="#FFD700"/>
+                    <!-- Eyes (dollar signs) -->
+                    <text x="280" y="540" font-size="24" fill="#39FF14" font-weight="bold">$</text>
+                    <text x="310" y="540" font-size="24" fill="#39FF14" font-weight="bold">$</text>
+                    <!-- Smile -->
+                    <path d="M 280 555 Q 300 575 320 555" stroke="#333" stroke-width="3" fill="none"/>
+                    <!-- Body - suit -->
+                    <rect x="250" y="575" width="100" height="150" rx="5" fill="#111"/>
+                    <!-- Gold chain -->
+                    <path d="M 270 590 Q 300 620 330 590" stroke="#FFD700" stroke-width="4" fill="none"/>
+                    <circle cx="300" cy="620" r="12" fill="#FFD700"/>
+                    <text x="300" y="626" text-anchor="middle" font-size="14" fill="#111" font-weight="bold">$</text>
+                    <!-- Hands holding diamonds -->
+                    <circle cx="230" cy="650" r="15" fill="#FFE4B5"/>
+                    <circle cx="370" cy="650" r="15" fill="#FFE4B5"/>
+                    <!-- Small diamonds in hands -->
+                    <polygon points="230,630 220,645 230,660 240,645" fill="#00FFFF"/>
+                    <polygon points="370,630 360,645 370,660 380,645" fill="#FF2D9B"/>
+                    <!-- Crown -->
+                    <polygon points="275,470 285,450 295,465 300,445 305,465 315,450 325,470" fill="#FFD700"/>
+                    <!-- Tag -->
+                    <text x="300" y="770" text-anchor="middle" font-family="'Permanent Marker'" font-size="28" fill="#FFE600">HypeLooT</text>
+                </svg>
+            </div>
+            <div class="artwork-info">
+                <h3 class="artwork-title">DIAMOND HANDS</h3>
+                <p class="artwork-desc">Digital Graffiti / Pop Art</p>
+            </div>
+        </div>
+
+        <!-- Artwork 4: Rolex / Watch scene -->
+        <div class="artwork-slide">
+            <div class="artwork-canvas" style="background: linear-gradient(135deg, #1a1a0a 0%, #0a0a0a 100%);">
+                <svg viewBox="0 0 600 800" class="artwork-svg">
+                    <rect width="600" height="800" fill="#080808"/>
+                    <!-- Giant watch -->
+                    <circle cx="300" cy="380" r="200" fill="none" stroke="#FFD700" stroke-width="8"/>
+                    <circle cx="300" cy="380" r="180" fill="#111"/>
+                    <circle cx="300" cy="380" r="175" fill="none" stroke="#FFD700" stroke-width="2"/>
+                    <!-- Watch markers -->
+                    <line x1="300" y1="210" x2="300" y2="230" stroke="#FFD700" stroke-width="4"/>
+                    <line x1="300" y1="530" x2="300" y2="550" stroke="#FFD700" stroke-width="4"/>
+                    <line x1="130" y1="380" x2="150" y2="380" stroke="#FFD700" stroke-width="4"/>
+                    <line x1="450" y1="380" x2="470" y2="380" stroke="#FFD700" stroke-width="4"/>
+                    <!-- Watch hands -->
+                    <line x1="300" y1="380" x2="300" y2="260" stroke="#FFD700" stroke-width="4" stroke-linecap="round"/>
+                    <line x1="300" y1="380" x2="380" y2="340" stroke="#FFD700" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="300" y1="380" x2="330" y2="440" stroke="#FF2D9B" stroke-width="1.5"/>
+                    <circle cx="300" cy="380" r="8" fill="#FFD700"/>
+                    <!-- Watch brand text -->
+                    <text x="300" y="310" text-anchor="middle" font-family="'Inter'" font-size="14" fill="#FFD700" letter-spacing="4">HYPELOOT</text>
+                    <!-- Crown on top -->
+                    <polygon points="280,170 290,150 300,160 310,145 320,155 330,140 340,170" fill="#FFD700"/>
+                    <!-- Money symbols around -->
+                    <text x="150" y="250" font-family="'Permanent Marker'" font-size="30" fill="#39FF14" opacity="0.4">$$$</text>
+                    <text x="400" y="550" font-family="'Permanent Marker'" font-size="25" fill="#FF2D9B" opacity="0.4">$$$</text>
+                    <!-- Watch strap -->
+                    <rect x="270" y="580" width="60" height="100" rx="5" fill="#222"/>
+                    <rect x="270" y="180" width="60" height="100" rx="5" fill="#222"/>
+                    <rect x="280" y="590" width="40" height="15" rx="2" fill="#FFD700" opacity="0.5"/>
+                    <rect x="280" y="195" width="40" height="15" rx="2" fill="#FFD700" opacity="0.5"/>
+                    <!-- Tag -->
+                    <text x="300" y="760" text-anchor="middle" font-family="'Permanent Marker'" font-size="28" fill="#FFD700">HypeLooT</text>
+                </svg>
+            </div>
+            <div class="artwork-info">
+                <h3 class="artwork-title">TIME IS MONEY</h3>
+                <p class="artwork-desc">Luxury Collection / Gold</p>
+            </div>
+        </div>
+    </section>
 
     <!-- About Section -->
-    <section class="section about-section" id="about">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">SOBRE <span class="text-accent">MÍ</span></h2>
-                <div class="title-drip"></div>
-            </div>
-            <div class="about-grid">
-                <div class="about-image-wrapper">
-                    <div class="about-image-frame">
-                        <div class="frame-corner top-left"></div>
-                        <div class="frame-corner top-right"></div>
-                        <div class="frame-corner bottom-left"></div>
-                        <div class="frame-corner bottom-right"></div>
-                        <div class="about-image-placeholder">
-                            <span class="placeholder-icon">&#127918;</span>
-                            <span class="placeholder-text">HypeKLK</span>
-                        </div>
-                    </div>
-                    <div class="about-tag">@hypeklk</div>
-                </div>
-                <div class="about-content">
-                    <h3 class="about-name">HypeKLK</h3>
-                    <p class="about-bio">
-                        Gallego de 26 años apasionado por el gaming y la comunidad. 
-                        Streamer dedicado a crear contenido entretenido y competitivo, 
-                        principalmente en <strong>Albion Online</strong> y otros juegos multijugador.
-                    </p>
-                    <p class="about-bio">
-                        Mi estilo combina el tryhard competitivo con el humor gallego. 
-                        Cada stream es una aventura diferente donde la comunidad es lo primero.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-card">
-                            <span class="stat-icon">&#128126;</span>
-                            <span class="stat-label">Juego Principal</span>
-                            <span class="stat-value">Albion Online</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">&#127463;&#127466;</span>
-                            <span class="stat-label">Origen</span>
-                            <span class="stat-value">Galicia, España</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-icon">&#128293;</span>
-                            <span class="stat-label">Contenido</span>
-                            <span class="stat-value">PvP & Guild Wars</span>
-                        </div>
-                    </div>
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-text">
+                <p class="about-intro">ORIGINAL ART INQUIRIES</p>
+                <h2 class="about-title">HypeKLK</h2>
+                <p class="about-description">
+                    Gallego. 26 años. Streamer y creador de contenido. 
+                    Especializado en Albion Online — PvP, Guild Wars y ZvZ. 
+                    La comunidad es todo. El loot es vida.
+                </p>
+                <div class="about-links">
+                    <a href="https://twitch.tv/hypeklk" target="_blank" class="about-link">TWITCH</a>
+                    <a href="https://instagram.com/hypeklk" target="_blank" class="about-link">INSTAGRAM</a>
+                    <a href="https://tiktok.com/@hypeklk" target="_blank" class="about-link">TIKTOK</a>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- Streams Section -->
-    <section class="section streams-section" id="streams">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">STREAMS <span class="text-accent">EN VIVO</span></h2>
-                <div class="title-drip"></div>
-            </div>
-            <div class="stream-embed-wrapper">
-                <div class="stream-frame">
-                    <iframe
-                        src="https://player.twitch.tv/?channel=hypeklk&parent=marcosblancoyt-alt.github.io&muted=true"
-                        height="400"
-                        width="100%"
-                        allowfullscreen
-                        frameborder="0"
-                        title="HypeKLK Twitch Stream">
-                    </iframe>
-                </div>
-                <div class="stream-chat-frame">
-                    <iframe
-                        src="https://www.twitch.tv/embed/hypeklk/chat?parent=marcosblancoyt-alt.github.io&darkpopout"
-                        height="400"
-                        width="100%"
-                        frameborder="0"
-                        title="HypeKLK Twitch Chat">
-                    </iframe>
-                </div>
-            </div>
-            <div class="stream-schedule">
-                <h3 class="schedule-title">&#128197; HORARIO DE STREAMS</h3>
-                <div class="schedule-grid">
-                    <div class="schedule-day">
-                        <span class="day-name">LUN</span>
-                        <span class="day-time">20:00 - 00:00</span>
-                    </div>
-                    <div class="schedule-day">
-                        <span class="day-name">MIE</span>
-                        <span class="day-time">20:00 - 00:00</span>
-                    </div>
-                    <div class="schedule-day">
-                        <span class="day-name">VIE</span>
-                        <span class="day-time">21:00 - 02:00</span>
-                    </div>
-                    <div class="schedule-day active">
-                        <span class="day-name">SAB</span>
-                        <span class="day-time">18:00 - 02:00</span>
-                    </div>
-                    <div class="schedule-day">
-                        <span class="day-name">DOM</span>
-                        <span class="day-time">18:00 - 00:00</span>
-                    </div>
-                </div>
+    <section class="streams" id="streams">
+        <div class="streams-container">
+            <div class="stream-embed">
+                <iframe
+                    src="https://player.twitch.tv/?channel=hypeklk&parent=marcosblancoyt-alt.github.io&muted=true"
+                    allowfullscreen
+                    frameborder="0"
+                    title="HypeKLK Twitch Stream">
+                </iframe>
             </div>
         </div>
     </section>
 
-
-    <!-- Clips Section -->
-    <section class="section clips-section" id="clips">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">MEJORES <span class="text-accent">CLIPS</span></h2>
-                <div class="title-drip"></div>
+    <!-- Contact / Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">HypeLooT</div>
+            <div class="footer-social">
+                <a href="https://twitch.tv/hypeklk" target="_blank">TWITCH</a>
+                <a href="https://instagram.com/hypeklk" target="_blank">INSTAGRAM</a>
+                <a href="https://tiktok.com/@hypeklk" target="_blank">TIKTOK</a>
             </div>
-            <div class="clips-grid">
-                <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <div class="clip-play-btn">&#9654;</div>
-                        <div class="clip-overlay"></div>
-                        <div class="clip-placeholder">
-                            <span>&#9876;&#65039;</span>
-                            <p>PvP Highlight</p>
-                        </div>
-                    </div>
-                    <div class="clip-info">
-                        <h4 class="clip-title">Guild War Épica</h4>
-                        <span class="clip-game">Albion Online</span>
-                    </div>
-                </div>
-                <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <div class="clip-play-btn">&#9654;</div>
-                        <div class="clip-overlay"></div>
-                        <div class="clip-placeholder">
-                            <span>&#128163;</span>
-                            <p>ZvZ Moment</p>
-                        </div>
-                    </div>
-                    <div class="clip-info">
-                        <h4 class="clip-title">ZvZ 100 vs 100</h4>
-                        <span class="clip-game">Albion Online</span>
-                    </div>
-                </div>
-                <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <div class="clip-play-btn">&#9654;</div>
-                        <div class="clip-overlay"></div>
-                        <div class="clip-placeholder">
-                            <span>&#128176;</span>
-                            <p>Loot Drop</p>
-                        </div>
-                    </div>
-                    <div class="clip-info">
-                        <h4 class="clip-title">Loot Millonario</h4>
-                        <span class="clip-game">Albion Online</span>
-                    </div>
-                </div>
-                <div class="clip-card">
-                    <div class="clip-thumbnail">
-                        <div class="clip-play-btn">&#9654;</div>
-                        <div class="clip-overlay"></div>
-                        <div class="clip-placeholder">
-                            <span>&#129409;</span>
-                            <p>Funny Moment</p>
-                        </div>
-                    </div>
-                    <div class="clip-info">
-                        <h4 class="clip-title">Fail Épico</h4>
-                        <span class="clip-game">Albion Online</span>
-                    </div>
-                </div>
-            </div>
-            <div class="clips-cta">
-                <a href="https://twitchtracker.com/hypeklk/clips" target="_blank" class="btn btn-primary">
-                    VER TODOS LOS CLIPS
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Social Section -->
-    <section class="section social-section" id="social">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">REDES <span class="text-accent">SOCIALES</span></h2>
-                <div class="title-drip"></div>
-            </div>
-            <div class="social-grid">
-                <a href="https://twitch.tv/hypeklk" target="_blank" class="social-card social-twitch">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-                            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/>
-                        </svg>
-                    </div>
-                    <div class="social-info">
-                        <h3 class="social-name">Twitch</h3>
-                        <p class="social-handle">@hypeklk</p>
-                        <p class="social-desc">Streams en vivo de Albion Online, PvP y Guild Wars</p>
-                    </div>
-                    <span class="social-arrow">&#8594;</span>
-                </a>
-                <a href="https://instagram.com/hypeklk" target="_blank" class="social-card social-instagram">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                        </svg>
-                    </div>
-                    <div class="social-info">
-                        <h3 class="social-name">Instagram</h3>
-                        <p class="social-handle">@hypeklk</p>
-                        <p class="social-desc">Fotos, historias y contenido exclusivo</p>
-                    </div>
-                    <span class="social-arrow">&#8594;</span>
-                </a>
-                <a href="https://tiktok.com/@hypeklk" target="_blank" class="social-card social-tiktok">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
-                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.88 2.89 2.89 0 01-2.88-2.88 2.89 2.89 0 012.88-2.88c.28 0 .56.04.82.11V9.4a6.33 6.33 0 00-.82-.05A6.34 6.34 0 003.15 15.7 6.34 6.34 0 009.49 22a6.34 6.34 0 006.34-6.34V9.01a8.27 8.27 0 004.76 1.5V7.08a4.83 4.83 0 01-1-.39z"/>
-                        </svg>
-                    </div>
-                    <div class="social-info">
-                        <h3 class="social-name">TikTok</h3>
-                        <p class="social-handle">@hypeklk</p>
-                        <p class="social-desc">Clips cortos, highlights y momentos épicos</p>
-                    </div>
-                    <span class="social-arrow">&#8594;</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-gradient-border"></div>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <span class="logo-text footer-logo-text">Hype<span class="logo-accent">LooT</span></span>
-            </div>
-            <div class="footer-links">
-                <a href="https://twitch.tv/hypeklk" target="_blank">Twitch</a>
-                <a href="https://instagram.com/hypeklk" target="_blank">Instagram</a>
-                <a href="https://tiktok.com/@hypeklk" target="_blank">TikTok</a>
-            </div>
-            <p class="footer-copy">&copy; 2024 HypeLooT &bull; HypeKLK &bull; Hecho con &#128293; desde Galicia</p>
+            <p class="footer-copy">© 2024 HypeLooT • HypeKLK • Galicia</p>
         </div>
     </footer>
 
