@@ -103,7 +103,6 @@ const RECIPE_MASTERY = {
     "goat_sandwich":"bocadillo", "mutton_sandwich":"bocadillo", "beef_sandwich":"bocadillo",
     "roast_chicken":"asados", "roast_goose":"asados", "roast_pork":"asados"
 };
-
 function t(key) { return UI_TEXT[currentLang][key] || key; }
 function ingName(name) { return (currentLang === 'es' && INGREDIENT_NAMES.es[name]) ? INGREDIENT_NAMES.es[name] : name; }
 function recipeName(r) { return currentLang === 'es' ? r.nameEs : r.name; }
@@ -223,12 +222,24 @@ function populateMasteries() {
     if (val) sel.value = val;
 }
 
+// Map category to mastery key
+const CAT_TO_MASTERY = { soup:"sopas", salad:"ensaladas", omelette:"tortillas", pie:"pastel", stew:"guisos", sandwich:"bocadillo", roast:"asados" };
+
+function getRecipesForMastery(mastery) {
+    // Find which category matches this mastery
+    const catKey = Object.keys(CAT_TO_MASTERY).find(k => CAT_TO_MASTERY[k] === mastery);
+    if (!catKey) return RECIPES;
+    return RECIPES.filter(r => r.category === catKey);
+}
+
 function getFameRequired(mastery, levelFrom, levelTo) {
     const totalFame = MASTERY_FAME[mastery] || 4032320;
-    // Linear interpolation: each level = totalFame / 100
     const famePerLevel = totalFame / 100;
     return Math.floor(famePerLevel * (levelTo - levelFrom));
 }
+
+// Price storage to preserve values between re-renders
+const savedPrices = {};
 
 function renderPLTable() {
     const mastery = document.getElementById('pl-mastery-select') ? document.getElementById('pl-mastery-select').value : 'sopas';
@@ -236,22 +247,25 @@ function renderPLTable() {
     const levelTo = parseInt(document.getElementById('pl-level-to') ? document.getElementById('pl-level-to').value : 100) || 100;
     const fameReq = getFameRequired(mastery, levelFrom, levelTo);
 
-    // Update fame required display
     const fameEl = document.getElementById('pl-fame-req-value');
     if (fameEl) fameEl.textContent = fameReq.toLocaleString();
 
-    // Build table
     const tbody = document.getElementById('pl-table-body');
     if (!tbody) return;
+    
+    // Save current prices before clearing
+    document.querySelectorAll('.price-input').forEach(inp => {
+        if (inp.value && parseInt(inp.value) > 0) savedPrices[inp.id] = inp.value;
+    });
+    
     tbody.innerHTML = '';
 
-    // Get recipes that belong to this mastery
-    const relevantRecipes = RECIPES.filter(r => RECIPE_MASTERY[r.id] === mastery);
+    const relevantRecipes = getRecipesForMastery(mastery);
 
     relevantRecipes.sort((a,b) => a.tier - b.tier).forEach(r => {
         const studyFame = STUDY_FAME[r.id] || 23;
-        const priceInput = document.getElementById('price-' + r.id);
-        const price = priceInput ? parseInt(priceInput.value) || 0 : 0;
+        const savedPrice = savedPrices['price-' + r.id] || 0;
+        const price = parseInt(savedPrice) || 0;
         const silverPerFame = price > 0 ? (price / studyFame).toFixed(2) : '-';
         const remaining = Math.ceil(fameReq / studyFame);
         const totalCost = price > 0 ? (remaining * price) : 0;
@@ -259,7 +273,7 @@ function renderPLTable() {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td class="td-recipe"><img src="${getItemImageUrl(r.itemId, 0)}" class="table-img" onerror="this.style.display='none'"> ${recipeName(r)}</td>
-            <td><input type="number" class="price-input" id="price-${r.id}" value="${price}" min="0" onchange="renderPLTable()"></td>
+            <td><input type="number" class="price-input" id="price-${r.id}" value="${price}" min="0" oninput="savePriceAndUpdate(this)"></td>
             <td>${studyFame}</td>
             <td>${silverPerFame}</td>
             <td>${remaining.toLocaleString()}</td>
@@ -270,6 +284,11 @@ function renderPLTable() {
 }
 
 function calculatePL() { renderPLTable(); }
+
+function savePriceAndUpdate(el) {
+    savedPrices[el.id] = el.value;
+    renderPLTable();
+}
 
 // INIT
 document.addEventListener('DOMContentLoaded', () => {
