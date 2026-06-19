@@ -3,114 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HypeLooT - Albion Online Cooking</title>
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <title>HypeLooT | HypeKLK - Street Art Gaming</title>
+    <meta name="description" content="HypeLooT - La comunidad gaming de HypeKLK. Streamer gallego de Albion Online.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&family=Permanent+Marker&family=Bebas+Neue&family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="lang-selector">
-        <button id="btn-es" class="lang-btn active" onclick="setLang('es')">ES</button>
-        <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
-    </div>
-
-    <header>
-        <div class="logo">
-            <span class="logo-hype">Hype</span><span class="logo-loot">LooT</span>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">Hype<span class="logo-accent">LooT</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Inicio</a>
+                <a href="#about" class="nav-link">Sobre Mí</a>
+                <a href="#streams" class="nav-link">Streams</a>
+                <a href="#clips" class="nav-link">Clips</a>
+                <a href="#social" class="nav-link">Redes</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
         </div>
-    </header>
-
-    <nav class="tabs">
-        <button class="tab-btn active" data-tab="wiki" id="tab-wiki-btn">Cocina</button>
-        <button class="tab-btn" data-tab="powerlevel" id="tab-pl-btn">Power Level / Study</button>
     </nav>
 
-    <!-- TAB 1: COCINA WIKI -->
-    <main id="tab-wiki" class="tab-content active">
-        <div class="selector-panel">
-            <div class="selector-group">
-                <label for="category-select" id="lbl-category">Tipo de Comida</label>
-                <select id="category-select"><option value="" id="opt-select-cat">-- Selecciona --</option></select>
-            </div>
-            <div class="selector-group">
-                <label for="recipe-select" id="lbl-recipe">Receta</label>
-                <select id="recipe-select" disabled><option value="">-- Selecciona tipo primero --</option></select>
-            </div>
-            <div class="selector-group">
-                <label for="enchant-select" id="lbl-enchant">Encantamiento</label>
-                <select id="enchant-select" disabled><option value="0">.0</option><option value="1">.1</option><option value="2">.2</option><option value="3">.3</option></select>
-            </div>
-        </div>
-        <div id="recipe-display" class="recipe-display hidden">
-            <div class="recipe-header">
-                <img id="recipe-img" class="recipe-main-img" src="" alt="">
-                <div class="recipe-info">
-                    <h2 id="recipe-name"></h2>
-                    <div class="recipe-tier" id="recipe-tier"></div>
-                    <div class="recipe-effect" id="recipe-effect"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="paint-splatter splatter-1"></div>
+        <div class="paint-splatter splatter-2"></div>
+        <div class="paint-splatter splatter-3"></div>
+        <div class="hero-content">
+            <div class="hero-logo-wrapper">
+                <h1 class="hero-logo">
+                    <span class="drip-letter">H</span><span class="drip-letter">y</span><span class="drip-letter">p</span><span class="drip-letter">e</span><span class="logo-accent drip-letter">L</span><span class="logo-accent drip-letter">o</span><span class="logo-accent drip-letter">o</span><span class="logo-accent drip-letter">T</span>
+                </h1>
+                <div class="hero-drips">
+                    <div class="drip drip-1"></div>
+                    <div class="drip drip-2"></div>
+                    <div class="drip drip-3"></div>
+                    <div class="drip drip-4"></div>
+                    <div class="drip drip-5"></div>
                 </div>
             </div>
-            <div class="ingredients-section">
-                <h3 id="lbl-ingredients">Ingredientes Necesarios</h3>
-                <div id="ingredients-list" class="ingredients-grid"></div>
-            </div>
-            <div class="enchant-info">
-                <h3 id="lbl-enchant-variants">Variantes de Encantamiento</h3>
-                <div id="enchant-variants" class="enchant-grid"></div>
+            <p class="hero-tagline">GAMING &bull; STREET ART &bull; COMUNIDAD</p>
+            <p class="hero-subtitle">Gallego &bull; 26 años &bull; Streamer</p>
+            <div class="hero-cta">
+                <a href="https://twitch.tv/hypeklk" target="_blank" class="btn btn-primary">
+                    <span class="btn-icon">&#9654;</span> VER EN TWITCH
+                </a>
+                <a href="#social" class="btn btn-secondary">REDES SOCIALES</a>
             </div>
         </div>
-        <div id="placeholder" class="placeholder">
-            <div class="placeholder-icon">&#x1F373;</div>
-            <p id="placeholder-text">Selecciona un tipo de comida y una receta para ver los ingredientes</p>
+        <div class="scroll-indicator">
+            <span class="scroll-text">SCROLL</span>
+            <div class="scroll-line"></div>
         </div>
-    </main>
+    </section>
 
-    <!-- TAB 2: POWER LEVEL -->
-    <main id="tab-powerlevel" class="tab-content">
-        <div class="pl-panel">
-            <h2 id="pl-title" class="pl-title">POWER-LEVEL DE COCINA</h2>
-            <p id="pl-desc" class="pl-desc">Calcula cuantos items necesitas estudiar para subir tu especializacion</p>
 
-            <div class="pl-config">
-                <div class="pl-config-row">
-                    <div class="pl-field">
-                        <label>Especialidad</label>
-                        <select id="pl-mastery-select"></select>
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">SOBRE <span class="text-accent">MÍ</span></h2>
+                <div class="title-drip"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <div class="about-image-frame">
+                        <div class="frame-corner top-left"></div>
+                        <div class="frame-corner top-right"></div>
+                        <div class="frame-corner bottom-left"></div>
+                        <div class="frame-corner bottom-right"></div>
+                        <div class="about-image-placeholder">
+                            <span class="placeholder-icon">&#127918;</span>
+                            <span class="placeholder-text">HypeKLK</span>
+                        </div>
                     </div>
-                    <div class="pl-field">
-                        <label id="pl-lbl-from">Nivel Actual</label>
-                        <input type="number" id="pl-level-from" min="0" max="100" value="1">
-                    </div>
-                    <div class="pl-field">
-                        <label id="pl-lbl-to">Nivel Meta</label>
-                        <input type="number" id="pl-level-to" min="1" max="100" value="100">
+                    <div class="about-tag">@hypeklk</div>
+                </div>
+                <div class="about-content">
+                    <h3 class="about-name">HypeKLK</h3>
+                    <p class="about-bio">
+                        Gallego de 26 años apasionado por el gaming y la comunidad. 
+                        Streamer dedicado a crear contenido entretenido y competitivo, 
+                        principalmente en <strong>Albion Online</strong> y otros juegos multijugador.
+                    </p>
+                    <p class="about-bio">
+                        Mi estilo combina el tryhard competitivo con el humor gallego. 
+                        Cada stream es una aventura diferente donde la comunidad es lo primero.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-icon">&#128126;</span>
+                            <span class="stat-label">Juego Principal</span>
+                            <span class="stat-value">Albion Online</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">&#127463;&#127466;</span>
+                            <span class="stat-label">Origen</span>
+                            <span class="stat-value">Galicia, España</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">&#128293;</span>
+                            <span class="stat-label">Contenido</span>
+                            <span class="stat-value">PvP & Guild Wars</span>
+                        </div>
                     </div>
                 </div>
-                <div class="pl-fame-box">
-                    <span id="pl-fame-req-label">Fama Requerida:</span>
-                    <strong id="pl-fame-req-value">4,032,320</strong>
-                </div>
-            </div>
-
-            <div class="pl-table-wrap">
-                <table class="pl-table">
-                    <thead>
-                        <tr>
-                            <th id="pl-th-receta">Receta</th>
-                            <th id="pl-th-precio">Precio</th>
-                            <th id="pl-th-estudio">Costo de Estudio</th>
-                            <th id="pl-th-platafama">Plata/Fama</th>
-                            <th id="pl-th-restantes">Restantes</th>
-                            <th id="pl-th-costototal">Costo Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="pl-table-body"></tbody>
-                </table>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer><p>HypeLooT &copy; 2026 | Albion Online</p></footer>
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+
+    <!-- Streams Section -->
+    <section class="section streams-section" id="streams">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">STREAMS <span class="text-accent">EN VIVO</span></h2>
+                <div class="title-drip"></div>
+            </div>
+            <div class="stream-embed-wrapper">
+                <div class="stream-frame">
+                    <iframe
+                        src="https://player.twitch.tv/?channel=hypeklk&parent=localhost&muted=true"
+                        height="400"
+                        width="100%"
+                        allowfullscreen
+                        frameborder="0"
+                        title="HypeKLK Twitch Stream">
+                    </iframe>
+                </div>
+                <div class="stream-chat-frame">
+                    <iframe
+                        src="https://www.twitch.tv/embed/hypeklk/chat?parent=localhost&darkpopout"
+                        height="400"
+                        width="100%"
+                        frameborder="0"
+                        title="HypeKLK Twitch Chat">
+                    </iframe>
+                </div>
+            </div>
+            <div class="stream-schedule">
+                <h3 class="schedule-title">&#128197; HORARIO DE STREAMS</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-day">
+                        <span class="day-name">LUN</span>
+                        <span class="day-time">20:00 - 00:00</span>
+                    </div>
+                    <div class="schedule-day">
+                        <span class="day-name">MIE</span>
+                        <span class="day-time">20:00 - 00:00</span>
+                    </div>
+                    <div class="schedule-day">
+                        <span class="day-name">VIE</span>
+                        <span class="day-time">21:00 - 02:00</span>
+                    </div>
+                    <div class="schedule-day active">
+                        <span class="day-name">SAB</span>
+                        <span class="day-time">18:00 - 02:00</span>
+                    </div>
+                    <div class="schedule-day">
+                        <span class="day-name">DOM</span>
+                        <span class="day-time">18:00 - 00:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Clips Section -->
+    <section class="section clips-section" id="clips">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">MEJORES <span class="text-accent">CLIPS</span></h2>
+                <div class="title-drip"></div>
+            </div>
+            <div class="clips-grid">
+                <div class="clip-card">
+                    <div class="clip-thumbnail">
+                        <div class="clip-play-btn">&#9654;</div>
+                        <div class="clip-overlay"></div>
+                        <div class="clip-placeholder">
+                            <span>&#9876;&#65039;</span>
+                            <p>PvP Highlight</p>
+                        </div>
+                    </div>
+                    <div class="clip-info">
+                        <h4 class="clip-title">Guild War Épica</h4>
+                        <span class="clip-game">Albion Online</span>
+                    </div>
+                </div>
+                <div class="clip-card">
+                    <div class="clip-thumbnail">
+                        <div class="clip-play-btn">&#9654;</div>
+                        <div class="clip-overlay"></div>
+                        <div class="clip-placeholder">
+                            <span>&#128163;</span>
+                            <p>ZvZ Moment</p>
+                        </div>
+                    </div>
+                    <div class="clip-info">
+                        <h4 class="clip-title">ZvZ 100 vs 100</h4>
+                        <span class="clip-game">Albion Online</span>
+                    </div>
+                </div>
+                <div class="clip-card">
+                    <div class="clip-thumbnail">
+                        <div class="clip-play-btn">&#9654;</div>
+                        <div class="clip-overlay"></div>
+                        <div class="clip-placeholder">
+                            <span>&#128176;</span>
+                            <p>Loot Drop</p>
+                        </div>
+                    </div>
+                    <div class="clip-info">
+                        <h4 class="clip-title">Loot Millonario</h4>
+                        <span class="clip-game">Albion Online</span>
+                    </div>
+                </div>
+                <div class="clip-card">
+                    <div class="clip-thumbnail">
+                        <div class="clip-play-btn">&#9654;</div>
+                        <div class="clip-overlay"></div>
+                        <div class="clip-placeholder">
+                            <span>&#129409;</span>
+                            <p>Funny Moment</p>
+                        </div>
+                    </div>
+                    <div class="clip-info">
+                        <h4 class="clip-title">Fail Épico</h4>
+                        <span class="clip-game">Albion Online</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clips-cta">
+                <a href="https://twitchtracker.com/hypeklk/clips" target="_blank" class="btn btn-primary">
+                    VER TODOS LOS CLIPS
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Social Section -->
+    <section class="section social-section" id="social">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">REDES <span class="text-accent">SOCIALES</span></h2>
+                <div class="title-drip"></div>
+            </div>
+            <div class="social-grid">
+                <a href="https://twitch.tv/hypeklk" target="_blank" class="social-card social-twitch">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/>
+                        </svg>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="social-name">Twitch</h3>
+                        <p class="social-handle">@hypeklk</p>
+                        <p class="social-desc">Streams en vivo de Albion Online, PvP y Guild Wars</p>
+                    </div>
+                    <span class="social-arrow">&#8594;</span>
+                </a>
+                <a href="https://instagram.com/hypeklk" target="_blank" class="social-card social-instagram">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="social-name">Instagram</h3>
+                        <p class="social-handle">@hypeklk</p>
+                        <p class="social-desc">Fotos, historias y contenido exclusivo</p>
+                    </div>
+                    <span class="social-arrow">&#8594;</span>
+                </a>
+                <a href="https://tiktok.com/@hypeklk" target="_blank" class="social-card social-tiktok">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.88 2.89 2.89 0 01-2.88-2.88 2.89 2.89 0 012.88-2.88c.28 0 .56.04.82.11V9.4a6.33 6.33 0 00-.82-.05A6.34 6.34 0 003.15 15.7 6.34 6.34 0 009.49 22a6.34 6.34 0 006.34-6.34V9.01a8.27 8.27 0 004.76 1.5V7.08a4.83 4.83 0 01-1-.39z"/>
+                        </svg>
+                    </div>
+                    <div class="social-info">
+                        <h3 class="social-name">TikTok</h3>
+                        <p class="social-handle">@hypeklk</p>
+                        <p class="social-desc">Clips cortos, highlights y momentos épicos</p>
+                    </div>
+                    <span class="social-arrow">&#8594;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-gradient-border"></div>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <span class="logo-text footer-logo-text">Hype<span class="logo-accent">LooT</span></span>
+            </div>
+            <div class="footer-links">
+                <a href="https://twitch.tv/hypeklk" target="_blank">Twitch</a>
+                <a href="https://instagram.com/hypeklk" target="_blank">Instagram</a>
+                <a href="https://tiktok.com/@hypeklk" target="_blank">TikTok</a>
+            </div>
+            <p class="footer-copy">&copy; 2024 HypeLooT &bull; HypeKLK &bull; Hecho con &#128293; desde Galicia</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
